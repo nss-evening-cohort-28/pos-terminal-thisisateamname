@@ -9,13 +9,19 @@ const emptyOrders = () => {
 const showOrders = (array) => {
   clearDom();
 
-  const btnString = '<button class="btn btn-success btn-lg mb-4" id="add-author-btn">Add Order</button>';
-
-  renderToDOM('#add-button', btnString);
-
   let domString = '';
-  array.forEach((/* item */) => {
+  array.forEach((item) => {
     domString += `
+    
+<div class="card" style="width: 18rem;">
+  <div class="card-body">
+    <h5 class="card-title">${item.name}</h5>
+    <h6 class="card-subtitle mb-2 text-muted">${item.status}</h6>
+    <p class="card-text">${item.orderType}</p>
+    <li class="list-group-item">${item.cxPhone}</li>
+
+  </div>
+</div>
 
     `;
   });
