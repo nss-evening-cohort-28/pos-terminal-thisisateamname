@@ -2,7 +2,7 @@ import logoutButton from '../components/logoutButton';
 import domBuilder from '../components/shared/domBuilder';
 import navBar from '../components/shared/navBar';
 import homePage from '../pages/homePage';
-// import domEvents from '../events/domEvents';
+// import domEvents from '../Events/domEvents';
 // import formEvents from '../events/formEvents';
 import navigationEvents from '../Events/navEvents';
 // import { showBooks } from '../pages/books';
