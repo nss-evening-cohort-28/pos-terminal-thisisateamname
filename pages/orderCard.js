@@ -12,13 +12,16 @@ const showOrders = (array) => {
   let domString = '';
   array.forEach((item) => {
     domString += `
-    
+
 <div class="card" style="width: 18rem;">
   <div class="card-body">
     <h5 class="card-title">${item.name}</h5>
     <h6 class="card-subtitle mb-2 text-muted">${item.status}</h6>
     <p class="card-text">${item.orderType}</p>
     <li class="list-group-item">${item.cxPhone}</li>
+        <a href="#" class="btn btn-primary">Edit</a>
+                <a href="#" class="btn btn-primary">Details</a>
+                        <a href="#" class="btn btn-primary">Delete</a>
 
   </div>
 </div>
