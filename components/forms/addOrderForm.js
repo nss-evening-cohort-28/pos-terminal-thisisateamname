@@ -24,9 +24,7 @@ const addOrderForm = (obj = {}) => {
           <option value="inPerson">In Person</option>
         </select>
       </div>
-      <div class="d-grid gap-2 col-6 mx-auto">
         <button type="submit" class="btn btn-success mt-3">Create/Edit Order</button>
-      </div>
     </form>`;
 
   renderToDOM('#form-container', domString);
