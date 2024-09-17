@@ -1,4 +1,3 @@
-import getOrders from '../api/orderData';
 import homePage from '../pages/homePage';
 import { getOrders } from '../api/orderData';
 import addOrderForm from '../components/forms/addOrderForm';

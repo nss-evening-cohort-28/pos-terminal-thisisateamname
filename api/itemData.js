@@ -35,4 +35,4 @@ const createItem = (payload) => new Promise((resolve, reject) => {
 
 // TODO: PROMISE FOR EDIT ITEMS
 
-export default { getItems, createItem };
+export { getItems, createItem };
