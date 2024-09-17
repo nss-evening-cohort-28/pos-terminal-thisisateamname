@@ -15,11 +15,33 @@ const getOrders = () => new Promise((resolve, reject) => {
     .catch(reject);
 });
 // TODO: PROMISE FOR CREATE ORDERS
-
+const createOrder = (payload) => new Promise((resolve, reject) => {
+  fetch(`${endpoint}/orders.json`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(payload),
+  })
+    .then((response) => response.json())
+    .then((data) => resolve(data))
+    .catch(reject);
+});
+// TODO: PROMISE FOR EDIT ORDERS
+const updateOrder = (payload) => new Promise((resolve, reject) => {
+  fetch(`${endpoint}/orders/${payload.firebaseKey}.json`, {
+    method: 'PATCH',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(payload),
+  })
+    .then((response) => response.json())
+    .then(resolve)
+    .catch(reject);
+});
 // TODO: PROMISE FOR DELETE ORDERS
 
 // TODO: PROMISE FOR GET SINGLE ORDER
 
-// TODO: PROMISE FOR EDIT ORDERS
-
-export default getOrders;
+export { getOrders, createOrder, updateOrder };
