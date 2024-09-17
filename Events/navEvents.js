@@ -11,7 +11,6 @@ const navigationEvents = () => {
   document.querySelector('#homeBtn').addEventListener('click', () => {
     homePage();
   });
-
   document.querySelector('#createOrder').addEventListener('click', () => {
     addOrderForm();
   });
