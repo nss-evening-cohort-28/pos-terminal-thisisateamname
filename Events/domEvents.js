@@ -1,4 +1,20 @@
-import getItems from '../api/itemData';
+<<<<<<< HEAD
+import { getOrders } from '../api/orderData';
+import { showOrders } from '../pages/orderCard';
+import addOrderForm from '../components/forms/addOrderForm';
+
+const domEvents = () => {
+  document.querySelector('#main-container').addEventListener('click', (e) => {
+    if (e.target.id.includes('viewOrderBtn')) {
+      getOrders().then(showOrders);
+    }
+
+    if (e.target.id.includes('createOrderBtn')) {
+      addOrderForm();
+    }
+  });
+};
+=======
 import getOrders from '../api/orderData';
 import { showOrders } from '../pages/orderCard';
 import { showItems } from '../pages/itemCard';
@@ -19,4 +35,5 @@ const domEvents = () => {
   });
 };
 
+>>>>>>> main
 export default domEvents;
