@@ -21,7 +21,7 @@ const showOrders = (array) => {
     <li class="list-group-item">${item.cxPhone}</li>
         <a href="#" class="btn btn-primary">Edit</a>
                 <a href="#" class="btn btn-primary">Details</a>
-                        <a href="#" class="btn btn-primary">Delete</a>
+                        <a href="#" class="btn btn-primary" id="deleteOrderBtn">Delete</a>
 
   </div>
 </div>

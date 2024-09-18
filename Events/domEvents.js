@@ -1,4 +1,4 @@
-import { getOrders } from '../api/orderData';
+import { getOrders, deleteOrder } from '../api/orderData';
 import { showOrders } from '../pages/orderCard';
 import addOrderForm from '../components/forms/addOrderForm';
 import { getItems } from '../api/itemData';
@@ -15,6 +15,17 @@ const domEvents = () => {
     }
     if (e.target.id.includes('itemDetailsBtn')) {
       getItems().then(showItems);
+    }
+    if (e.target.id.includes('deleteOrderBtn')) {
+      // eslint-disable-next-line no-alert
+      if (window.confirm('Want to delete?')) {
+        console.warn('CLICKED DELETE ORDER', e.target.id);
+        const [, firebaseKey] = e.target.id.split('--');
+
+        deleteOrder(firebaseKey).then(() => {
+          getOrders().then(showOrders);
+        });
+      }
     }
   });
 };
