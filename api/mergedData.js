@@ -10,7 +10,7 @@ const getOrderDetails = (firebaseKey) => new Promise((resolve, reject) => {
 
 const deleteOrderItemsRelationship = (firebaseKey) => new Promise((resolve, reject) => {
   getOrderItems(firebaseKey).then((orderItemsArray) => {
-    const deleteBookPromises = orderItemsArray.map((book) => deleteOrder(book.firebaseKey));
+    const deleteBookPromises = orderItemsArray.map((items) => deleteOrder(items.firebaseKey));
 
     Promise.all(deleteBookPromises).then(() => {
       deleteItem(firebaseKey).then(resolve);

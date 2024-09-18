@@ -2,7 +2,7 @@ import { getOrders } from '../api/orderData';
 import { showOrders } from '../pages/orderCard';
 import addOrderForm from '../components/forms/addOrderForm';
 import viewOrder from '../pages/orderDetails';
-import deleteOrderItemsRelationship, { getOrderDetails } from '../api/mergedData';
+import { getOrderDetails, deleteOrderItemsRelationship } from '../api/mergedData';
 
 const domEvents = () => {
   document.querySelector('#main-container').addEventListener('click', (e) => {
