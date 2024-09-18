@@ -1,9 +1,8 @@
-import { getOrders, deleteOrder } from '../api/orderData';
+import { getOrders } from '../api/orderData';
 import { showOrders } from '../pages/orderCard';
 import addOrderForm from '../components/forms/addOrderForm';
-// import { getItems } from '../api/itemData';
 import viewOrder from '../pages/orderDetails';
-import { getOrderDetails } from '../api/mergedData';
+import deleteOrderItemsRelationship, { getOrderDetails } from '../api/mergedData';
 
 const domEvents = () => {
   document.querySelector('#main-container').addEventListener('click', (e) => {
@@ -27,7 +26,7 @@ const domEvents = () => {
         console.warn('CLICKED DELETE ORDER', e.target.id);
         const [, firebaseKey] = e.target.id.split('--');
 
-        deleteOrder(firebaseKey).then(() => {
+        deleteOrderItemsRelationship(firebaseKey).then(() => {
           getOrders().then(showOrders);
         });
       }
