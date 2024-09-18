@@ -3,6 +3,17 @@ import client from '../utils/client';
 const endpoint = client.databaseURL;
 
 // TODO: PROMISE FOR GET ITEMS
+const getItems = () => new Promise((resolve, reject) => {
+  fetch(`${endpoint}/items.json`, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  })
+    .then((response) => response.json())
+    .then((data) => resolve(Object.values(data)))
+    .catch(reject);
+});
 
 // TODO: PROMISE FOR CREATE ITEMS
 const createItem = (payload) => new Promise((resolve, reject) => {
@@ -21,7 +32,17 @@ const createItem = (payload) => new Promise((resolve, reject) => {
 // TODO: PROMISE FOR DELETE ITEMS
 
 // TODO: PROMISE FOR GET SINGLE ITEM
-
+const getSingleItem = (firebaseKey) => new Promise((resolve, reject) => {
+  fetch(`${endpoint}/items/${firebaseKey}.json`, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+    }, // you technically do not need the options object for GET requests, but using it here for consistency
+  })
+    .then((response) => response.json())
+    .then((data) => resolve(data)) // will resolve a single object
+    .catch(reject);
+});
 // TODO: PROMISE FOR EDIT ITEMS
 
-export default createItem;
+export { getItems, createItem, getSingleItem };
