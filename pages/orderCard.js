@@ -20,13 +20,8 @@ const showOrders = (array) => {
     <p class="card-text">${item.orderType}</p>
     <li class="list-group-item">${item.cxPhone}</li>
         <a href="#" class="btn btn-primary">Edit</a>
-<<<<<<< HEAD
-                <a href="#" class="btn btn-primary">Details</a>
                         <a href="#" class="btn btn-primary" id="deleteOrderBtn">Delete</a>
-=======
                 <a href="#" class="btn btn-primary" id="itemDetailsBtn--${item.firebaseKey}">Details</a>
-                        <a href="#" class="btn btn-primary">Delete</a>
->>>>>>> 8a8284a89687b1aa464be899fc80e6a29d299064
 
   </div>
 </div>
