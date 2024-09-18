@@ -1,8 +1,9 @@
 import { getOrders, deleteOrder } from '../api/orderData';
 import { showOrders } from '../pages/orderCard';
 import addOrderForm from '../components/forms/addOrderForm';
-import { getItems } from '../api/itemData';
-import { showItems } from '../pages/itemCard';
+// import { getItems } from '../api/itemData';
+import viewOrder from '../pages/orderDetails';
+import { getOrderDetails } from '../api/mergedData';
 
 const domEvents = () => {
   document.querySelector('#main-container').addEventListener('click', (e) => {
@@ -14,7 +15,11 @@ const domEvents = () => {
       addOrderForm();
     }
     if (e.target.id.includes('itemDetailsBtn')) {
-      getItems().then(showItems);
+      const [, firebaseKey] = e.target.id.split('--');
+      console.warn(getOrderDetails(firebaseKey));
+      getOrderDetails(firebaseKey).then(viewOrder);
+      // getItems(getSingleOrder(firebaseKey)).then(showItems);
+      // getSingleOrder(firebaseKey).then(showItems);
     }
     if (e.target.id.includes('deleteOrderBtn')) {
       // eslint-disable-next-line no-alert

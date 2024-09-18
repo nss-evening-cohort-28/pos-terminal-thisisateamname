@@ -55,7 +55,35 @@ const deleteOrder = (firebaseKey) => new Promise((resolve, reject) => {
 });
 
 // TODO: PROMISE FOR GET SINGLE ORDER
+const getSingleOrder = (firebaseKey) => new Promise((resolve, reject) => {
+  fetch(`${endpoint}/orders/${firebaseKey}.json`, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+    }, // you technically do not need the options object for GET requests, but using it here for consistency
+  })
+    .then((response) => response.json())
+    .then((data) => resolve(data)) // will resolve a single object
+    .catch(reject);
+});
+
+// TODO: PROMISE FOR GET ORDER ITEMS
+const getOrderItems = (firebaseKey) => new Promise((resolve, reject) => {
+  fetch(`${endpoint}/items.json?orderBy="orderId"&equalTo="${firebaseKey}"`, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  })
+    .then((response) => response.json())
+    .then((data) => resolve(Object.values(data)))
+    .catch(reject);
+});
 
 export {
-  getOrders, createOrder, updateOrder, deleteOrder
+  getOrders,
+  createOrder,
+  updateOrder,
+  getOrderItems,
+  getSingleOrder,
 };
