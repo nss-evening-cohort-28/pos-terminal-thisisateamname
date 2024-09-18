@@ -30,6 +30,17 @@ const createItem = (payload) => new Promise((resolve, reject) => {
 });
 
 // TODO: PROMISE FOR DELETE ITEMS
+const deleteItem = (firebaseKey) => new Promise((resolve, reject) => {
+  fetch(`${endpoint}/items/${firebaseKey}.json`, {
+    method: 'DELETE',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  })
+    .then((response) => response.json())
+    .then((data) => resolve(data))
+    .catch(reject);
+});
 
 // TODO: PROMISE FOR GET SINGLE ITEM
 const getSingleItem = (firebaseKey) => new Promise((resolve, reject) => {
@@ -45,4 +56,6 @@ const getSingleItem = (firebaseKey) => new Promise((resolve, reject) => {
 });
 // TODO: PROMISE FOR EDIT ITEMS
 
-export { getItems, createItem, getSingleItem };
+export {
+  getItems, createItem, getSingleItem, deleteItem
+};

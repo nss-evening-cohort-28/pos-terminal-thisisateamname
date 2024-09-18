@@ -86,4 +86,5 @@ export {
   updateOrder,
   getOrderItems,
   getSingleOrder,
+  deleteOrder
 };
