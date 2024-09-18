@@ -1,23 +1,18 @@
 import clearDom from '../utils/clearDom';
 import renderToDOM from '../utils/renderToDom';
-import { getItems } from '../api/itemData';
 
-const emptyItems = () => {
-  const domString = '<h1>No Items</h1>';
-  renderToDOM('#store', domString);
-};
-
-const showItems = () => {
+const viewOrder = (obj) => {
   clearDom();
+  const domString = `
+  <h5 class="total">Total WORK</h5>
+  `;
 
-  const btnString = '<button class="btn btn-success btn-lg mb-4" id="add-author-btn">Add Item</button><button class="btn btn-success btn-lg mb-4" id="goTo-payment-btn">Go To Payment</button>';
+  renderToDOM('#view', domString);
 
-  renderToDOM('#add-button', btnString);
+  let itemString = '';
 
-  getItems().then((itemArray) => {
-    let domString = '';
-    itemArray.forEach((item) => {
-      domString += `
+  obj.items.forEach((item) => {
+    itemString += `
       <div class="card" style="width: 18rem;">
         <div class="card-body">
           <h5 class="card-title">${item.name}</h5>
@@ -27,11 +22,10 @@ const showItems = () => {
           <button class="btn-info"><i class="fa fa-edit" id="edit-order--${item.firebaseKey}"></i></button>
           <button class="btn btn-danger"><i class="fa fa-trash-alt" id="delete-order-btn--${item.firebaseKey}"></i></button>
         </div>
-      </div>
-      `;
-    });
-    renderToDOM('#store', domString);
+      </div>`;
   });
+
+  renderToDOM('#store', itemString);
 };
 
-export { showItems, emptyItems };
+export default viewOrder;

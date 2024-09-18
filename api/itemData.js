@@ -32,7 +32,17 @@ const createItem = (payload) => new Promise((resolve, reject) => {
 // TODO: PROMISE FOR DELETE ITEMS
 
 // TODO: PROMISE FOR GET SINGLE ITEM
-
+const getSingleItem = (firebaseKey) => new Promise((resolve, reject) => {
+  fetch(`${endpoint}/items/${firebaseKey}.json`, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+    }, // you technically do not need the options object for GET requests, but using it here for consistency
+  })
+    .then((response) => response.json())
+    .then((data) => resolve(data)) // will resolve a single object
+    .catch(reject);
+});
 // TODO: PROMISE FOR EDIT ITEMS
 
-export { getItems, createItem };
+export { getItems, createItem, getSingleItem };
