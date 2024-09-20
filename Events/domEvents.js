@@ -2,14 +2,11 @@ import { getOrders } from '../api/orderData';
 import { showOrders } from '../pages/orderCard';
 import addOrderForm from '../components/forms/addOrderForm';
 import viewOrder from '../pages/orderDetails';
-<<<<<<< HEAD
-import { getOrderDetails } from '../api/mergedData';
+import { getOrderDetails, deleteOrderItemsRelationship } from '../api/mergedData';
 import addItemForm from '../components/forms/addItemForm';
 import addPaymentForm from '../components/forms/addPaymentForm';
-=======
-import { getOrderDetails, deleteOrderItemsRelationship } from '../api/mergedData';
 import viewRevenue from '../pages/revenue';
->>>>>>> main
+import { getItems } from '../api/itemData';
 
 const domEvents = () => {
   document.querySelector('#main-container').addEventListener('click', (e) => {

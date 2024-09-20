@@ -26,7 +26,7 @@ const addOrderForm = (obj = {}) => {
       </div>
         <button type="submit" class="btn btn-success mt-3">Create/Edit Order</button>
     </form>`;
-  // && value.length === 10 line 14 end
+  // && value.length === 10 line 14 end for phone #
   renderToDOM('#form-container', domString);
 };
 
