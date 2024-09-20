@@ -3,13 +3,13 @@ import { showOrders } from '../pages/orderCard';
 import addOrderForm from '../components/forms/addOrderForm';
 import viewOrder from '../pages/orderDetails';
 import { getOrderDetails, deleteOrderItemsRelationship } from '../api/mergedData';
+import viewRevenue from '../pages/revenue';
 
 const domEvents = () => {
   document.querySelector('#main-container').addEventListener('click', (e) => {
     if (e.target.id.includes('viewOrderBtn')) {
       getOrders().then(showOrders);
     }
-
     if (e.target.id.includes('createOrderBtn')) {
       addOrderForm();
     }
@@ -30,6 +30,9 @@ const domEvents = () => {
           getOrders().then(showOrders);
         });
       }
+    }
+    if (e.target.id.includes('viewRevenueBtn')) {
+      getItems().then(viewRevenue);
     }
   });
 };

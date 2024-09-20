@@ -1,8 +1,8 @@
-import renderToDOM from '../utils/renderToDom';
+import clearDom from '../utils/clearDom';
+import renderToDom from '../utils/renderToDom';
 
-const revenuePage = (array) => {
-  const closedOrders = array.filter((order) => order.order_status.toLowerCase() === 'closed');
-
+const viewRevenue = (arr) => {
+  clearDom();
   let totalRev = 0;
   let totalTip = 0;
   let totalPhone = 0;
@@ -10,27 +10,24 @@ const revenuePage = (array) => {
   let totalCash = 0;
   let totalCard = 0;
   let totalMobile = 0;
-
-  closedOrders.forEach((orders) => {
-    totalRev += (parseFloat(orders.order_amount) + parseFloat(orders.tip_amount));
-    totalTip += orders.tip_amount;
-    if (orders.payment_type === 'Cash') {
+  arr.forEach((obj) => {
+    totalRev += (parseFloat(obj.order_amount) + parseFloat(obj.tip_amount));
+    totalTip += obj.tip_amount;
+    if (obj.payment_type === 'Cash') {
       totalCash += 1;
-    } else if (orders.order_type === 'Mobile') {
+    } else if (obj.order_type === 'Mobile') {
       totalMobile += 1;
     } else {
       totalCard += 1;
     }
-    if (orders.order_type === 'Phone') {
+    if (obj.order_type === 'Phone') {
       totalPhone += 1;
     } else {
       totalWalkIn += 1;
     }
   });
-
   const domString = `
-  <h1 class="revenue-text">Revenue</h1>
-  <h2 class="total-revenue-text">Total Revenue: $${totalRev.toFixed(2)}</h2>
+  <h5>Total Revenue: $${totalRev}</h5>
   <div class="totals">
     <p>Total Tips: $${totalTip.toFixed(2)}</p>
     <p>Total Call-In Orders: ${totalPhone}</p>
@@ -41,9 +38,7 @@ const revenuePage = (array) => {
     <p>Cash: ${totalCash}</p>
     <p>Credit: ${totalCard}</p>
     <p>Mobile: ${totalMobile}</p>
-  </div>
-  `;
-  renderToDOM('#view', domString);
+  </div>`;
+  renderToDom('#view', domString);
 };
-
-export default revenuePage;
+export default viewRevenue;
