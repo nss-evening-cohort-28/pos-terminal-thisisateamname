@@ -54,7 +54,22 @@ const getSingleItem = (firebaseKey) => new Promise((resolve, reject) => {
     .catch(reject);
 });
 // TODO: PROMISE FOR EDIT ITEMS
-
+const updateItem = (payload) => new Promise((resolve, reject) => {
+  fetch(`${endpoint}/items/${payload.firebaseKey}.json`, {
+    method: 'PATCH',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(payload),
+  })
+    .then((response) => response.json())
+    .then(resolve)
+    .catch(reject);
+});
 export {
-  getItems, createItem, getSingleItem, deleteItem
+  getItems,
+  createItem,
+  getSingleItem,
+  updateItem,
+  deleteItem
 };
