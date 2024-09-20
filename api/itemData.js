@@ -37,8 +37,7 @@ const deleteItem = (firebaseKey) => new Promise((resolve, reject) => {
       'Content-Type': 'application/json',
     },
   })
-    .then((response) => response.json())
-    .then((data) => resolve(data))
+    .then(() => resolve())
     .catch(reject);
 });
 
