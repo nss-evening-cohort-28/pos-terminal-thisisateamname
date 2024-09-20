@@ -7,7 +7,7 @@ const viewOrder = (obj) => {
   <h5 class="total">Total WORK</h5>
   `;
 
-  renderToDOM('#view', domString);
+  renderToDOM('#store', domString);
 
   let itemString = '';
 
@@ -25,7 +25,13 @@ const viewOrder = (obj) => {
       </div>`;
   });
 
-  renderToDOM('#store', itemString);
+  itemString += `
+    <button id="addItemBtn" class="btn-info"><i id="parentOrderId__${obj.itemIds}"></i>Add Items</button>
+    <button class="btn btn-info" type="button" id="paymentForm">Payment</button>
+    `;
+
+  // <button class="btn btn-success"  type="button" id="addItemBtn__${obj.itemIds}">Add Items</button>
+  renderToDOM('#view', itemString);
 };
 
 export default viewOrder;

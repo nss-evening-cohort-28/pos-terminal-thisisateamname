@@ -14,6 +14,7 @@ const showItems = () => {
 
   renderToDOM('#add-button', btnString);
 
+  // GO OVER
   getItems().then((itemArray) => {
     let domString = '';
     itemArray.forEach((item) => {

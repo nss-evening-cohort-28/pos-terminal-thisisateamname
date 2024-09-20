@@ -11,7 +11,7 @@ const addOrderForm = (obj = {}) => {
       </div>
       <div class="form-group">
         <label for="phone-number">Customer Phone #</label>
-        <input type="text" class="form-control" id="customerPhone" placeholder="Enter Phone Number" value="${obj.cxPhone || ''}" required>
+        <input type="number" class="form-control" id="customerPhone" placeholder="Enter Phone Number" value="${obj.cxPhone || ''}" required>
       </div>
       <div class="form-group">
         <label for="email">Customer Email</label>
@@ -26,7 +26,7 @@ const addOrderForm = (obj = {}) => {
       </div>
         <button type="submit" class="btn btn-success mt-3">Create/Edit Order</button>
     </form>`;
-
+  // && value.length === 10 line 14 end
   renderToDOM('#form-container', domString);
 };
 
