@@ -1,10 +1,10 @@
 import clearDom from '../../utils/clearDom';
 import renderToDOM from '../../utils/renderToDom';
 
-const addOrderForm = (obj = {}) => {
+const editOrderForm = (obj = {}) => {
   clearDom();
   const domString = `
-    <form id="${obj.firebaseKey ? `update-order--${obj.firebaseKey}` : 'submit-order'}" class="mb-4">
+    <form id="${obj.firebaseKey ? `update-order--${obj.firebaseKey}` : 'submitEdit-order'}" class="mb-4">
       <div class="form-group">
         <label for="title">Order Name</label>
         <input type="text" class="form-control" id="orderName" placeholder="Enter Name" value="${obj.name || ''}" required>
@@ -24,10 +24,17 @@ const addOrderForm = (obj = {}) => {
           <option value="inPerson">In Person</option>
         </select>
       </div>
-        <button type="submit" class="btn btn-success mt-3">Create Order</button>
+      <div class="form-group">
+        <label for="title">Order Status</label>
+        <select class="form-control" id="orderStatus">
+          <option value="open">Open</option>
+          <option value="closed">Closed</option>
+        </select>
+      </div>
+        <button type="submit" class="btn btn-success mt-3">Edit Order</button>
     </form>`;
   // && value.length === 10 line 14 end for phone #
   renderToDOM('#form-container', domString);
 };
 
-export default addOrderForm;
+export default editOrderForm;

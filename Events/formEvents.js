@@ -4,54 +4,71 @@ const formEvents = () => {
   document.querySelector('#main-container').addEventListener('submit', (e) => {
     e.preventDefault();
 
-    // Check for item form submissions
-    if (e.target.id === 'submit-item' || e.target.id.includes('update-item--')) {
-      // Retrieve orderId from the hidden input field within the form
-      const orderIdInput = e.target.querySelector('#orderId');
-      const orderId = orderIdInput ? orderIdInput.value : null;
+    if (e.target.id.includes('submit-order')) {
+      console.warn('work');
+      const [, firebaseKey] = e.target.id.split('--');
+      const payload = {
+        name: document.querySelector('#orderName').value,
+        cxPhone: document.querySelector('#customerPhone').value,
+        email: document.querySelector('#email').value,
+        orderType: document.querySelector('#orderType').value,
+        status: 'Open',
+        firebaseKey,
+      };
+      createOrder(payload).then(({ name }) => {
+        const patchPayload = { firebaseKey: name };
+        updateOrder(patchPayload).then(() => {
+          getOrders().then(showOrders);
+        });
+      });
+    }
 
-      if (!orderId) {
-        console.error('Order ID is undefined');
-        return;
-      }
+    if (e.target.id.includes('update-order')) {
+      console.warn('work');
+      const [, firebaseKey] = e.target.id.split('--');
+      const payload = {
+        name: document.querySelector('#orderName').value,
+        cxPhone: document.querySelector('#customerPhone').value,
+        email: document.querySelector('#email').value,
+        orderType: document.querySelector('#orderType').value,
+        status: document.querySelector('#orderStatus').value,
+        firebaseKey,
+      };
+      updateOrder(payload).then(() => {
+        getOrders().then(showOrders);
+      });
+    }
+    if (e.target.id.includes('update-item')) {
+      console.warn('work');
+      const [, firebaseKey] = e.target.id.split('--');
+      const payload = {
+        name: document.querySelector('#itemName').value,
+        price: document.querySelector('#itemPrice').value,
+        onSale: true,
+        orderId: 'ItemId',
+        firebaseKey,
+      };
+      updateItem(payload).then(() => {
+        getOrders().then(showOrders);
+      });
+    }
 
-      // Extract firebaseKey for updates
-      const firebaseKey = e.target.id.includes('update-item--') ? e.target.id.split('--')[1] : null;
-
+    if (e.target.id.includes('submit-item')) {
+      console.warn('work');
+      const [, firebaseKey] = e.target.id.split('--');
       const payload = {
         name: e.target.querySelector('#itemName').value,
         price: e.target.querySelector('#itemPrice').value,
         onSale: true,
-        orderId, // Use orderId from the hidden input field
+        orderId: 'ItemId',
+        firebaseKey,
       };
-
-      if (firebaseKey) {
-        // Editing an existing item
-        payload.firebaseKey = firebaseKey;
-        updateItem(payload)
-          .then(() => {
-            // Refresh the order details or item list
-          })
-          .catch((error) => {
-            console.error('Error updating item:', error);
-          });
-      } else {
-        // Creating a new item
-        createItem(payload)
-          .then(({ name }) => {
-            const patchPayload = { ...payload, firebaseKey: name };
-            updateItem(patchPayload)
-              .then(() => {
-                // Refresh the order details or item list
-              })
-              .catch((error) => {
-                console.error('Error updating item:', error);
-              });
-          })
-          .catch((error) => {
-            console.error('Error creating item:', error);
-          });
-      }
+      createItem(payload).then(({ name }) => {
+        const patchPayload = { firebaseKey: name };
+        updateItem(patchPayload).then(() => {
+          getOrders().then(showOrders);
+        });
+      });
     }
   });
 };
