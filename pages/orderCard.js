@@ -22,7 +22,7 @@ const showOrders = (array) => {
         <a href="#" class="btn btn-primary" id="editOrderBtn--${item.firebaseKey}">Edit</a>
         <a href="#" class="btn btn-primary" id="deleteOrderBtn--${item.firebaseKey}">Delete</a>
         <a href="#" class="btn btn-primary" id="itemDetailsBtn--${item.firebaseKey}">Details</a>
-
+        <a href="#" class="btn btn-primary" id="deleteOrderBtn--${item.firebaseKey}">Delete</a>
   </div>
 </div>
 
