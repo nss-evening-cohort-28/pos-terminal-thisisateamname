@@ -13,7 +13,7 @@ This app is a POS that allows restaurant owners to keep track of, create, and up
 TBD
 
 ## Project Board
-TBD
+![Project Board](./AppScreenshots/PorjectBoard.png)
 
 ## User Description
 Ideal user would be someone that would benefit from an organized POS system.
