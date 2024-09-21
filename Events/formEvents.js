@@ -5,6 +5,7 @@ import {
   updateOrder,
 } from '../api/orderData';
 import { showOrders } from '../pages/orderCard';
+import { createPayment, updatePayment } from '../api/paymentData';
 
 const formEvents = () => {
   document.querySelector('#main-container').addEventListener('submit', (e) => {
@@ -24,6 +25,22 @@ const formEvents = () => {
       createOrder(payload).then(({ name }) => {
         const patchPayload = { firebaseKey: name };
         updateOrder(patchPayload).then(() => {
+          getOrders().then(showOrders);
+        });
+      });
+    }
+
+    if (e.target.id.includes('submit-payment')) {
+      console.warn('work');
+      const [, firebaseKey] = e.target.id.split('--');
+      const payload = {
+        tip: document.querySelector('#tip').value,
+        payment: document.querySelector('#payment').value,
+        firebaseKey,
+      };
+      createPayment(payload).then(({ name }) => {
+        const patchPayload = { firebaseKey: name };
+        updatePayment(patchPayload).then(() => {
           getOrders().then(showOrders);
         });
       });
