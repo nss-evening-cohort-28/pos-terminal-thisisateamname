@@ -1,46 +1,46 @@
-<div style="text-align:center">
-<h1>Hip Hop, Pizza, and Wangs (HHP+W)</h1>
+# HipHop Pizza n Wangs
 
-<image src="https://user-images.githubusercontent.com/29741570/205346767-a182560c-64a6-4cfa-80b3-0d64cf998242.png" style="height:300px;"></image></div>
+## Overview
+This app is a POS that allows restaurant owners to keep track of, create, and update items/orders.
 
-## Get Started
-**READ ALL INSTRUCTIONS BEFORE BEGINNING THIS PROJECT.** Take notes as you read.
+## Wireframe
+[Wireframe](https://www.figma.com/design/4y3EZddALuBR3ouSEM57Np/MVP?node-id=0-1&node-type=canvas&t=sNaqoi6ohs28JMhP-0)
 
-Everything that needs to be done before coding starts.
+## Flowchart
+![Flowchart](https://files.slack.com/files-pri/T03F2SDTJ-F07LP366746/thisisteamname_flowchart.png)
 
-* **ERD** - Create an ERD to show the relationships between all of  your data
-* **Postman Collection** - Create a postman collection to store and test out all of your API calls.
-* **[Wireframes](https://www.figma.com/file/4y3EZddALuBR3ouSEM57Np/MVP?node-id=0%3A1)** - This is the basic MVP wireframe. You can choose to style how you wish.
-* **Flowchart** - Plan out the flow of your data through the application
-* **Github Issue Tickets** - Using the Project Instructions as a guide, create issue tickets for this project’s work.
-* **Github Milestones** - Separate those issue tickets into Milestones to plan out the work.
+## Deployed Project
+TBD
 
-## Definition of Done
+## Project Board
+![Project Board](./AppScreenshots/PorjectBoard.png)
 
-Do not submit this project until all of the following are complete:
+## User Description
+Ideal user would be someone that would benefit from an organized POS system.
 
-1. All items are completed in getting started
-1. MVP, defined by the Acceptance Criteria, has been completed
-1. The title of your application is visible in the browser tab
-1. The project has been deployed
-1. Loom video has been created
-1. `README.md` has been updated
+## Features
+- Google User Authentication
+- Welcome page with the option to 'View Orders', 'Create Orders', and 'View Revenue'
+- Navbar fearuring 'View Orders' and 'Create an Order'
+- Orders have option to edit, view details, or delete
+- Order details page shows all items and total of those items
+- Items have create and delete options 
+- Form to create item
+- Form to create orders
+- Revenue page
 
-## Requirements
+## Screenshots
+![Welcome Page](./AppScreenshots/Welcome.png)
+![View Orders](./AppScreenshots/ViewOrders.png)
+![Edit Order](./AppScreenshots/EditOrder.png)
+![Create Order](./AppScreenshots/CreateOrder.png)
+![Add/Edit Item](./AppScreenshots/AddEditItem.png)
 
-Things to remember while coding out the project
+## Contributors 
+[Sirena Foster](https://github.com/sirenabailie)
+[David Trejo](https://github.com/Dtrjeo)
+[Max Jones](https://github.com/MaxJones129)
+[Matthew Bayes](https://github.com/Bayes77)
 
-* Clean code - single responsibility principle
-* ES6 Modules bundled with webpack
-* No errors - linters should be clean
-* Bootstrap for styling
-* Completely planned out - before each section you should be making new cards on your Github project board before you code
-* Wireframes are provided for you for MVP
-* You should have an ERD
-
-### Instructions
-
-* [MVP Definition - It Gets the Job Done](./instructions/mvp.md)
-* [Stretch Goals 1 - Filtering the Data](./instructions/stretch-1.md)
-* [Stretch Goals 2 - Dealing with Change](./instructions/stretch-2.md)
-* [Stretch Goals 3 - Play that Funky Music](./instructions/stretch-3.md)
+## Loom Video
+TBD

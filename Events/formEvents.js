@@ -1,5 +1,7 @@
-import { createOrder, getOrders, updateOrder } from '../api/orderData';
+import { updateItem, createItem } from '../api/itemData';
+import { createOrder, updateOrder, getOrders } from '../api/orderData';
 import { showOrders } from '../pages/orderCard';
+import { createPayment, updatePayment } from '../api/paymentData';
 
 const formEvents = () => {
   document.querySelector('#main-container').addEventListener('submit', (e) => {
@@ -13,12 +15,76 @@ const formEvents = () => {
         cxPhone: document.querySelector('#customerPhone').value,
         email: document.querySelector('#email').value,
         orderType: document.querySelector('#orderType').value,
-        status: 'open',
+        status: 'Open',
         firebaseKey,
       };
       createOrder(payload).then(({ name }) => {
         const patchPayload = { firebaseKey: name };
         updateOrder(patchPayload).then(() => {
+          getOrders().then(showOrders);
+        });
+      });
+    }
+
+    if (e.target.id.includes('submit-payment')) {
+      console.warn('work');
+      const [, firebaseKey] = e.target.id.split('--');
+      const payload = {
+        tip: document.querySelector('#tip').value,
+        payment: document.querySelector('#payment').value,
+        firebaseKey,
+      };
+      createPayment(payload).then(({ name }) => {
+        const patchPayload = { firebaseKey: name };
+        updatePayment(patchPayload).then(() => {
+          getOrders().then(showOrders);
+        });
+      });
+    }
+
+    if (e.target.id.includes('update-order')) {
+      console.warn('work');
+      const [, firebaseKey] = e.target.id.split('--');
+      const payload = {
+        name: document.querySelector('#orderName').value,
+        cxPhone: document.querySelector('#customerPhone').value,
+        email: document.querySelector('#email').value,
+        orderType: document.querySelector('#orderType').value,
+        status: document.querySelector('#orderStatus').value,
+        firebaseKey,
+      };
+      updateOrder(payload).then(() => {
+        getOrders().then(showOrders);
+      });
+    }
+    if (e.target.id.includes('update-item')) {
+      console.warn('work');
+      const [, firebaseKey] = e.target.id.split('--');
+      const payload = {
+        name: document.querySelector('#itemName').value,
+        price: document.querySelector('#itemPrice').value,
+        onSale: true,
+        orderId: 'ItemId',
+        firebaseKey,
+      };
+      updateItem(payload).then(() => {
+        getOrders().then(showOrders);
+      });
+    }
+
+    if (e.target.id.includes('submit-item')) {
+      console.warn('work');
+      const [, firebaseKey] = e.target.id.split('--');
+      const payload = {
+        name: e.target.querySelector('#itemName').value,
+        price: e.target.querySelector('#itemPrice').value,
+        onSale: true,
+        orderId: 'ItemId',
+        firebaseKey,
+      };
+      createItem(payload).then(({ name }) => {
+        const patchPayload = { firebaseKey: name };
+        updateItem(patchPayload).then(() => {
           getOrders().then(showOrders);
         });
       });

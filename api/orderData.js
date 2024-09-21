@@ -62,7 +62,10 @@ const getSingleOrder = (firebaseKey) => new Promise((resolve, reject) => {
     }, // you technically do not need the options object for GET requests, but using it here for consistency
   })
     .then((response) => response.json())
-    .then((data) => resolve(data)) // will resolve a single object
+    .then((data) => {
+      console.warn(data.itemIds); // implemented for testing
+      resolve(data);
+    }) // will resolve a single object
     .catch(reject);
 });
 
