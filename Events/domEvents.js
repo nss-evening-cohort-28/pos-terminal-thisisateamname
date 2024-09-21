@@ -6,6 +6,8 @@ import { getOrderDetails, deleteOrderItemsRelationship } from '../api/mergedData
 import addItemForm from '../components/forms/addItemForm';
 import addPaymentForm from '../components/forms/addPaymentForm';
 import viewRevenue from '../pages/revenue';
+import { getItems } from '../api/itemData';
+import getPayment from '../api/revenueData';
 import { getItems, getSingleItem, deleteItem } from '../api/itemData';
 import editOrderForm from '../components/forms/editOrderForm';
 
@@ -41,7 +43,10 @@ const domEvents = () => {
       }
     }
     if (e.target.id.includes('viewRevenueBtn')) {
-      getItems().then(viewRevenue);
+      Promise.all([getPayment(), getItems()])
+        .then(([payment, items]) => {
+          viewRevenue(items, payment);
+        });
     }
     if (e.target.id.includes('editOrderBtn')) {
       const [, firebaseKey] = e.target.id.split('--');
