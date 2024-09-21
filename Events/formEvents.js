@@ -1,63 +1,59 @@
-import { createItem, updateItem } from '../api/itemData';
-import {
-  createOrder,
-  getOrders,
-  updateOrder,
-} from '../api/orderData';
-import { showOrders } from '../pages/orderCard';
+import { updateItem, createItem } from '../api/itemData';
 
 const formEvents = () => {
   document.querySelector('#main-container').addEventListener('submit', (e) => {
     e.preventDefault();
 
-    if (e.target.id.includes('submit-order')) {
-      console.warn('work');
-      const [, firebaseKey] = e.target.id.split('--');
-      const payload = {
-        name: document.querySelector('#orderName').value,
-        cxPhone: document.querySelector('#customerPhone').value,
-        email: document.querySelector('#email').value,
-        orderType: document.querySelector('#orderType').value,
-        status: 'open',
-        firebaseKey,
-      };
-      createOrder(payload).then(({ name }) => {
-        const patchPayload = { firebaseKey: name };
-        updateOrder(patchPayload).then(() => {
-          getOrders().then(showOrders);
-        });
-      });
-    }
+    // Check for item form submissions
+    if (e.target.id === 'submit-item' || e.target.id.includes('update-item--')) {
+      // Retrieve orderId from the hidden input field within the form
+      const orderIdInput = e.target.querySelector('#orderId');
+      const orderId = orderIdInput ? orderIdInput.value : null;
 
-    if (e.target.id.includes('submit-item')) {
-      console.warn('work');
-      const [, firebaseKey] = e.target.id.split('--');
-      const [, itemId] = e.target.id.split('__');
-      console.warn(itemId);
+      if (!orderId) {
+        console.error('Order ID is undefined');
+        return;
+      }
+
+      // Extract firebaseKey for updates
+      const firebaseKey = e.target.id.includes('update-item--') ? e.target.id.split('--')[1] : null;
+
       const payload = {
-        name: document.querySelector('#itemName').value,
-        price: document.querySelector('#itemPrice').value,
+        name: e.target.querySelector('#itemName').value,
+        price: e.target.querySelector('#itemPrice').value,
         onSale: true,
-        orderId: itemId,
-        firebaseKey,
+        orderId, // Use orderId from the hidden input field
       };
-      createItem(payload).then(({ name }) => {
-        const patchPayload = { firebaseKey: name };
-        updateItem(patchPayload).then(() => {
-          getOrders().then(showOrders);
-        });
-      });
+
+      if (firebaseKey) {
+        // Editing an existing item
+        payload.firebaseKey = firebaseKey;
+        updateItem(payload)
+          .then(() => {
+            // Refresh the order details or item list
+          })
+          .catch((error) => {
+            console.error('Error updating item:', error);
+          });
+      } else {
+        // Creating a new item
+        createItem(payload)
+          .then(({ name }) => {
+            const patchPayload = { ...payload, firebaseKey: name };
+            updateItem(patchPayload)
+              .then(() => {
+                // Refresh the order details or item list
+              })
+              .catch((error) => {
+                console.error('Error updating item:', error);
+              });
+          })
+          .catch((error) => {
+            console.error('Error creating item:', error);
+          });
+      }
     }
   });
 };
 
 export default formEvents;
-
-// localcache for save data, jsonParse for conversion of array, phone number = ( + ,1-3 digit, ) +, 4-6, -, 7-10
-
-// const idOrder = getSingleOrder(firebaseKey).then((result) => result.itemIds);
-
-//  _/\_
-// ('__')
-//  \  /
-//   \/

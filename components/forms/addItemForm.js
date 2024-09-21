@@ -1,16 +1,23 @@
 import clearDom from '../../utils/clearDom';
 import renderToDOM from '../../utils/renderToDom';
 
-const addItemForm = (obj = {}) => {
+const addItemForm = (orderFirebaseKey, obj = {}) => {
   clearDom();
+
+  const formId = obj.firebaseKey
+    ? `update-item--${obj.firebaseKey}`
+    : 'submit-item';
+
   const domString = `
-      <form id="${obj.firebaseKey ? `update-item--${obj.firebaseKey}` : 'submit-item'}" class="mb-4">
+    <form id="${formId}" class="mb-4">
+      <!-- Hidden input for orderId -->
+      <input type="hidden" id="orderId" value="${orderFirebaseKey}">
       <div class="form-group">
-        <label for="title">Item Name</label>
+        <label for="itemName">Item Name</label>
         <input type="text" class="form-control" id="itemName" placeholder="Enter Name" value="${obj.name || ''}" required>
       </div>
       <div class="form-group">
-        <label for="title">Item Price</label>
+        <label for="itemPrice">Item Price</label>
         <input type="text" class="form-control" id="itemPrice" placeholder="Enter Item Price" value="${obj.price || ''}" required>
       </div>
       <div class="d-grid gap-2 col-6 mx-auto">
