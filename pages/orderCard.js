@@ -19,7 +19,8 @@ const showOrders = (array) => {
     <h6 class="card-subtitle mb-2 text-muted">${item.status}</h6>
     <p class="card-text">${item.orderType}</p>
     <li class="list-group-item">${item.cxPhone}</li>
-        <a href="#" class="btn btn-primary">Edit</a>
+        <a href="#" class="btn btn-primary" id="editOrderBtn--${item.firebaseKey}">Edit</a>
+        <a href="#" class="btn btn-primary" id="deleteOrderBtn--${item.firebaseKey}">Delete</a>
         <a href="#" class="btn btn-primary" id="itemDetailsBtn--${item.firebaseKey}">Details</a>
         <a href="#" class="btn btn-primary" id="deleteOrderBtn--${item.firebaseKey}">Delete</a>
   </div>

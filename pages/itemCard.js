@@ -25,8 +25,8 @@ const showItems = () => {
           <h6 class="card-subtitle mb-2 text-muted">${item.price}</h6>
           <hr>
           <div>${item.onSale ? '<i class="fa fa-star" aria-hidden="true"></i>' : ''}</div>
-          <button class="btn-info"><i class="fa fa-edit" id="edit-order--${item.firebaseKey}"></i></button>
-          <button class="btn btn-danger"><i class="fa fa-trash-alt" id="delete-order-btn--${item.firebaseKey}"></i></button>
+          <button class="btn-info"><i class="fa fa-edit" id="edit-item--${item.firebaseKey}"></i></button>
+          <button class="btn btn-danger"><i class="fa fa-trash-alt" id="delete-item-btn--${item.firebaseKey}"></i></button>
         </div>
       </div>
       `;
