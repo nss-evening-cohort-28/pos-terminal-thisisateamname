@@ -4,6 +4,8 @@ import addOrderForm from '../components/forms/addOrderForm';
 import viewOrder from '../pages/orderDetails';
 import { getOrderDetails, deleteOrderItemsRelationship } from '../api/mergedData';
 import viewRevenue from '../pages/revenue';
+import { getItems } from '../api/itemData';
+import getPayment from '../api/revenueData';
 
 const domEvents = () => {
   document.querySelector('#main-container').addEventListener('click', (e) => {
@@ -32,7 +34,10 @@ const domEvents = () => {
       }
     }
     if (e.target.id.includes('viewRevenueBtn')) {
-      getItems().then(viewRevenue);
+      Promise.all([getPayment(), getItems()])
+        .then(([payment, items]) => {
+          viewRevenue(items, payment);
+        });
     }
   });
 };

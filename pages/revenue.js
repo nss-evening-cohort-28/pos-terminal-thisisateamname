@@ -5,22 +5,22 @@ const viewRevenue = (arr) => {
   clearDom();
   let totalRev = 0;
   let totalTip = 0;
-  let totalPhone = 0;
+  let totalPhone = 2;
   let totalWalkIn = 0;
-  let totalCash = 0;
+  let totalCash = 1;
   let totalCard = 0;
-  let totalMobile = 0;
+  let totalMobile = 1;
   arr.forEach((obj) => {
-    totalRev += (parseFloat(obj.order_amount) + parseFloat(obj.tip_amount));
-    totalTip += obj.tip_amount;
-    if (obj.payment_type === 'Cash') {
+    totalRev += parseFloat(obj.price.replace('$', ''));
+    totalTip += 2;
+    if (obj.payment === 'cash') {
       totalCash += 1;
-    } else if (obj.order_type === 'Mobile') {
+    } else if (obj.payment === 'mobile') {
       totalMobile += 1;
     } else {
       totalCard += 1;
     }
-    if (obj.order_type === 'Phone') {
+    if (obj.orderType === 'Phone') {
       totalPhone += 1;
     } else {
       totalWalkIn += 1;
@@ -29,7 +29,7 @@ const viewRevenue = (arr) => {
   const domString = `
   <h5>Total Revenue: $${totalRev}</h5>
   <div class="totals">
-    <p>Total Tips: $${totalTip.toFixed(2)}</p>
+    <p>Total Tips: $${totalTip}</p>
     <p>Total Call-In Orders: ${totalPhone}</p>
     <p>Total Walk-In Orders: ${totalWalkIn}</p>
   </div>
