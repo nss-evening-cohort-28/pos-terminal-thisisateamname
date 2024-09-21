@@ -4,15 +4,18 @@ import renderToDOM from '../utils/renderToDom';
 const viewOrder = (obj) => {
   clearDom();
   const domString = `
-  <h5 class="total">Total WORK</h5>
+  <h5 id="total"></h5>
   `;
 
-  renderToDOM('#store', domString);
+  renderToDOM('#orderTotal', domString);
 
   let itemString = '';
   let btnString = '';
+  let total = 0;
 
   obj.items.forEach((item) => {
+    total += parseFloat(item.price.replace('$', ''));
+
     itemString += `
       <div class="card" style="width: 18rem;">
         <div class="card-body">
@@ -27,6 +30,7 @@ const viewOrder = (obj) => {
   });
 
   // <button class="btn btn-success"  type="button" id="addItemBtn__${obj.itemIds}">Add Items</button>
+  renderToDOM('#total', total);
   renderToDOM('#store', itemString);
 
   btnString += `
